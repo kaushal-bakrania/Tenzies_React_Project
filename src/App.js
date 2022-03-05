@@ -31,7 +31,7 @@ export default function App() {
     }
     return newDice;
   }
-  
+
   const [rollCount, setRollCount] = React.useState(0);
 
   function rollDice() {
@@ -41,7 +41,6 @@ export default function App() {
         oldDice.map((die) => {
           return die.isHeld ? die : generateNewDie();
         })
-      
       );
     } else {
       setTenzies(false);
@@ -68,18 +67,20 @@ export default function App() {
   ));
 
   return (
-    <main>
-      {tenzies && <Confetti />}
-      <h1 className="title">Tenzies</h1>
-      <p className="instructions">
-        Roll until all dice are the same. Click each die to freeze it at its
-        current value between rolls.
-      </p>
-      <div className="dice-container">{diceElements}</div>
-      <span>Roll Count : {rollCount}</span>
-      <button className="roll-dice" onClick={rollDice}>
-        {tenzies ? "New Game" : "Roll"}
-      </button>
-    </main>
+    <div className="container">
+      <main>
+        {tenzies && <Confetti />}
+        <h1 className="title">Tenzies</h1>
+        <p className="instructions">
+          Roll until all dice are the same. Click each die to freeze it at its
+          current value between rolls.
+        </p>
+        <div className="dice-container">{diceElements}</div>
+        <span>Roll Count : {rollCount}</span>
+        <button className="roll-dice" onClick={rollDice}>
+          {tenzies ? "New Game" : "Roll"}
+        </button>
+      </main>
+    </div>
   );
 }
