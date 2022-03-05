@@ -31,18 +31,22 @@ export default function App() {
     }
     return newDice;
   }
-
+  
+  const [rollCount, setRollCount] = React.useState(0);
 
   function rollDice() {
     if (!tenzies) {
+      setRollCount(rollCount + 1);
       setDice((oldDice) =>
         oldDice.map((die) => {
           return die.isHeld ? die : generateNewDie();
         })
+      
       );
     } else {
       setTenzies(false);
       setDice(allNewDice());
+      setRollCount(0);
     }
   }
 
@@ -72,6 +76,7 @@ export default function App() {
         current value between rolls.
       </p>
       <div className="dice-container">{diceElements}</div>
+      <span>Roll Count : {rollCount}</span>
       <button className="roll-dice" onClick={rollDice}>
         {tenzies ? "New Game" : "Roll"}
       </button>
