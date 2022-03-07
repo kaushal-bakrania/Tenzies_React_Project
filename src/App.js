@@ -33,6 +33,7 @@ export default function App() {
   }
 
   const [rollCount, setRollCount] = React.useState(0);
+  const [highScore, setHighScore] = React.useState(0);
 
   function rollDice() {
     if (!tenzies) {
@@ -45,6 +46,9 @@ export default function App() {
     } else {
       setTenzies(false);
       setDice(allNewDice());
+      if (highScore === 0 || highScore > rollCount) {
+        setHighScore(rollCount);
+      }
       setRollCount(0);
     }
   }
@@ -80,6 +84,9 @@ export default function App() {
         <button className="roll-dice" onClick={rollDice}>
           {tenzies ? "New Game" : "Roll"}
         </button>
+        <div className="highscore-cont">
+          <h2>High Score: {highScore}</h2>
+        </div>
       </main>
     </div>
   );
